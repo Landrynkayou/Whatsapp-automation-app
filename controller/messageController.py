@@ -2,7 +2,7 @@ import pyautogui
 from time import *
 import datetime
 import schedule
-from model.db import Session, Message, ScheduledMessage
+from model.db import Session, Message, ScheduledOperation
 
 many=False
 plural=False
@@ -22,7 +22,7 @@ def createMessage(contact, msg, time=""):
     session.commit()
 
     # Schedule the message
-    scheduled_message = ScheduledMessage(
+    scheduled_message = ScheduledOperation(
         message_id=new_message.id,
     )
     session.add(scheduled_message)
@@ -40,7 +40,7 @@ def sendMessages(contact, msg):
             print("Plural : ",plural)
             print("many : ",many)
             sleep(2)
-            pyautogui.click(x=355, y=15) 
+            pyautogui.click(x=380, y=13) 
             sleep(2)
             pyautogui.hotkey("win", "up")
             sleep(0.5)
@@ -94,7 +94,7 @@ def scheduleMessages():
     print("Len of message array :",len(pending_messages))
     for message in pending_messages:
         # Send the message
-        scheduleTableVal = session.query(ScheduledMessage).filter(ScheduledMessage.message_id == message.id)
+        scheduleTableVal = session.query(ScheduledOperation).filter(ScheduledOperation.message_id == message.id)
         sendTime = message.send_time
         schedule.every().day.at(sendTime).do(
             sendMessages,
