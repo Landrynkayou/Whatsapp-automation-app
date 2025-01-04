@@ -23,6 +23,7 @@ def createStatus(content, media=True, text="", time=""):
 
     # Schedule the status
     scheduled_status = ScheduledOperation(
+        operation="status",
         status_id=new_status.id,
     )
     session.add(scheduled_status)

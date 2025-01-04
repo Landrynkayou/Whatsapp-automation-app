@@ -3,10 +3,9 @@ from time import *
 import datetime
 import schedule
 from model.db import Session, Message, ScheduledOperation
+from utils.oppenZapp import *
 
-many=False
-plural=False
-alreadyEntered=0
+oppened=False # serve as a flag to determine if whatsapp is already oppened or not
 
 def createMessage(contact, msg, time=""):
     session = Session()
@@ -32,13 +31,34 @@ def createMessage(contact, msg, time=""):
 
 
 def sendMessages(contact, msg):
-    global many, alreadyEntered
+    global oppened
     print(f"[{datetime.datetime.now()}] Sending message to {contact}...")
     try:
         sleep(2)
-        if (plural and many==False) or plural==False:
-            print("Plural : ",plural)
-            print("many : ",many)
+        try:
+            try :
+                pyautogui.locateCenterOnScreen("controller/image/chat_open.png", confidence=0.8)
+                oppened = True
+            except Exception as e:
+                try :
+                    pyautogui.click(pyautogui.locateCenterOnScreen("controller/image/channel_open.png", confidence=0.8))
+                    oppened = True
+                except Exception as e:
+                    try :
+                        pyautogui.click(pyautogui.locateCenterOnScreen("controller/image/status_open.png", confidence=0.8))
+                        oppened = True
+                    except Exception as e:
+                        try :
+                            pyautogui.click(pyautogui.locateCenterOnScreen("controller/image/community_open.png", confidence=0.8))
+                            oppened = True
+                        except Exception as e:
+                            print("WhatsApp Isn't Openned")
+                            raise
+        except Exception as e:
+            oppened = False
+        
+        if oppened==False :
+            print("oppened : ",oppened)
             sleep(2)
             pyautogui.click(x=380, y=13) 
             sleep(2)
@@ -50,34 +70,40 @@ def sendMessages(contact, msg):
             # sleep(7)
             sleep(4)
             print("Before Loop")
-            # while pyautogui.locateCenterOnScreen('loading_chat.png') :
-            #     print("Inside Loop 1")
-            #     break
-            while pyautogui.locateOnScreen('controller/image/loading_bar1.png') or pyautogui.locateOnScreen('controller/image/loading_bar2.png') :
-            # while pyautogui.locateCenterOnScreen('controller/loading_bar1.png') or pyautogui.locateCenterOnScreen('controller/loading_bar2.png') :
-                print("Inside Loop 2")
-                sleep(3)
-                break
+            try:
+                pyautogui.locateCenterOnScreen('controller/image/loading_chat.png', confidence=0.7)
+                print("Whatsapp is loading chats .............................")
+                while pyautogui.locateCenterOnScreen('controller/image/loading_chat.png', confidence=0.7) :
+                    sleep(1)
+            except Exception as e:
+                print("Chat Loaded !!!!!!!")
+            print("hi")
+            sleep(2)
+            try:
+                while pyautogui.locateCenterOnScreen('controller/image/loading_bar1.png', confidence=0.7) :
+                    sleep(1)
+            except Exception as e:
+                try:
+                    while pyautogui.locateCenterOnScreen('controller/image/loading_bar2.png', confidence=0.7) :
+                        sleep(1)
+                except Exception as e:
+                    raise
+            print("hi2")
         
             sleep(5)
             print("Outside Loop")
-
             sleep(3)
         
-            pyautogui.click(pyautogui.locateOnScreen('controller/image/search_icon.png'))
-            many=True
-        # elif alreadyEntered > 0:
-        #     pyautogui.click()
+            pyautogui.click(pyautogui.locateOnScreen('controller/image/search_icon.png', confidence=0.8))
         else:
-            alreadyEntered=alreadyEntered+1
-            pyautogui.click(pyautogui.locateOnScreen('controller/image/reset_seachBar.png'))
+            pyautogui.click(pyautogui.locateOnScreen('controller/image/reset_seachBar.png', confidence=0.8))
 
         pyautogui.write(contact, interval=0.05) 
         pyautogui.press('enter')
         pyautogui.write(msg, interval=0.2)
         print(f"[{datetime.datetime.now()}] Message sent!")
     except Exception as e:
-        pyautogui.alert("The Automation process could not continue\nAn Error was encountered ")
+        pyautogui.alert("The Automation process could not continue\nAn Error was encountered\n !! Verify your Internet connection !!")
         print("Couldn't send the message to "+contact+" : ",e)
 
 def scheduleMessages():
@@ -88,9 +114,6 @@ def scheduleMessages():
         .all()
     )
 
-    global plural
-    if len(pending_messages) > 1:
-        plural=True
     print("Len of message array :",len(pending_messages))
     for message in pending_messages:
         # Send the message
