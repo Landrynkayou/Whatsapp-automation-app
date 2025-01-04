@@ -3,14 +3,36 @@ import pyautogui
 from time import *
 import datetime
 import schedule
-from model.db import Session, Message, ScheduledOperation
+from model.db import Session, Status, ScheduledOperation
 
 oppened = False
 
+def createStatus(content, media=True, text="", time=""):
+    session = Session()
+    if time == "":
+        time = (datetime.datetime.now() + datetime.timedelta(minutes=1)).strftime("%H:%M")
+    # Create a new status
+    new_status = Status(
+        content_or_path = content,
+        send_time = time,
+        mediaText = text,
+        media = media,
+    )
+    session.add(new_status)
+    session.commit()
 
+    # Schedule the status
+    scheduled_status = ScheduledOperation(
+        status_id=new_status.id,
+    )
+    session.add(scheduled_status)
+    session.commit()
 
-def post_whatsapp_status(content, text=""):
+    print("status and scheduled status added successfully!")
+
+def postStatus(content, text, media):
     global oppened
+    sleep(2)
     try:
         try:
             try :
@@ -49,7 +71,6 @@ def post_whatsapp_status(content, text=""):
                     print("Inside Loop 2")
                     sleep(3)
                     break
-        
                 sleep(4)
                 print("Outside Loop")
             else :
@@ -76,16 +97,21 @@ def post_whatsapp_status(content, text=""):
         # pyautogui.press("down")
         pyautogui.press("enter")
         print("Navigating file explorer...")
-        if os.path.exists(content):
-            pyautogui.hotkey('ctrl', 'l')
+        if media == True:
+            if os.path.exists(content):
+                pyautogui.hotkey('ctrl', 'l')
+                sleep(1)
+                pyautogui.write(content, interval=0.08) 
+                pyautogui.press("enter")
+                sleep(3)
+                pyautogui.write(text, interval=0.08) 
+            else:
+                print("Status File path does not exist")
+                raise
+                return
+        else:
             sleep(1)
             pyautogui.write(content, interval=0.08) 
-            pyautogui.press("enter")
-            sleep(3)
-            pyautogui.write(text, interval=0.08) 
-        else:
-            print("Status File path does not exist")
-            return
                 
         print("Posting status...")
         try:
@@ -98,14 +124,36 @@ def post_whatsapp_status(content, text=""):
         print("Inside first try")
                 
     except Exception as e:
+        pyautogui.alert("The Automation process could not continue\nAn Error was encountered ")
         print("Exception Primary :An Error was encountered when posting the status : \n ")
         raise
         return
-    finally:
-        print("end")
 
+def scheduleStatus():
+    session = Session()  # Create a session
+    now = datetime.datetime.utcnow()
+    pending_status = (
+        session.query(Status)
+        .all()
+    )
 
-if __name__ == "__main__" :
-    # print(f"Current Working Directory: {os.getcwd()}")
-    sleep(4)
-    post_whatsapp_status("/home/hitechangel/Pictures/chat2.png", "My App")  # Update with the correct path
+    for status in pending_status:
+        # Send the Status
+        scheduleTableVal = session.query(ScheduledOperation).filter(ScheduledOperation.status_id == status.id)
+        sendTime = status.send_time
+        schedule.every().day.at(sendTime).do(
+            postStatus,
+            content=status.content_or_path,
+            text=status.mediaText,
+            media=status.media
+        )
+
+        # Update the status in the database
+        scheduleTableVal.status = 'Completed'
+        session.commit()
+
+    print("Scheduler is running. Waiting to post Status...\n\n")
+    while True:
+        schedule.run_pending()
+        sleep(1)
+

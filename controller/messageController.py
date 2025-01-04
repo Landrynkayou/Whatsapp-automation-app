@@ -59,7 +59,7 @@ def sendMessages(contact, msg):
                 sleep(3)
                 break
         
-            sleep(4)
+            sleep(5)
             print("Outside Loop")
 
             sleep(3)
