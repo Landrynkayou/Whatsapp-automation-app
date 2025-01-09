@@ -38,7 +38,7 @@ def createMessage(contact, msg, time=""):
     # Schedule the message
     scheduled_message = ScheduledOperation(
         message_id=new_message.id,
-        # current_status="In Process"
+        current_status="In Process"
     )
     session.add(scheduled_message)
     session.commit()
@@ -48,10 +48,11 @@ def createMessage(contact, msg, time=""):
 
 def sendMessages(lock, contact, msg):
     global oppene
+    app = False
     with lock:
         print(f"[{datetime.datetime.now()}] Sending message to {contact}...")
         try:
-            sleep(1)
+            sleep(0.5)
             oppene = OppenClosedZapp()
             sleep(1)
 
@@ -61,20 +62,32 @@ def sendMessages(lock, contact, msg):
                 try:
                     pyautogui.click(pyautogui.locateOnScreen('controller/image/chat_read.png', confidence=0.8))
                 except Exception as e:
-                    sleep(1)
+                    try:
+                        pyautogui.click(pyautogui.locateOnScreen('controller/image/burger_line.png', confidence=0.8))
+                        pyautogui.press("Enter")
+                    except Exception as e:
+                        sleep(0.5)
                     
             sleep(1)
             try:
                 pyautogui.click(pyautogui.locateOnScreen('controller/image/search_icon.png', confidence=0.8))
             except Exception as e:
-                pyautogui.click(pyautogui.locateOnScreen('controller/image/reset_seachBar.png', confidence=0.8))
+                try:
+                    pyautogui.click(pyautogui.locateOnScreen('controller/image/reset_seachBar.png', confidence=0.8))
+                except Exception as e:
+                    pyautogui.hotkey("ctrl","f")
+                    pyautogui.hotkey("ctrl","a")
+                    pyautogui.hotkey("backspace")
+                    app = True
 
             sleep(1)
             pyautogui.write(contact, interval=0.05) 
+            if app:
+                pyautogui.hotkey("down")
             pyautogui.press('enter')
-            sleep(1)
+            sleep(0.5)
             pyautogui.write(msg, interval=0.3)
-            # pyautogui.press('enter')
+            pyautogui.press('enter')
             print(f"[{datetime.datetime.now()}] Message sent!")
         except Exception as e:
             pyautogui.alert("The Automation process could not continue\nAn Error was encountered\n !! Verify your Internet connection !!")

@@ -1,4 +1,3 @@
-from controller.messageController import *
 from controller.statusController import *
 from utils.oppenZapp import *
 from multiprocessing import Process, Lock

@@ -9,6 +9,8 @@ from utils.oppenZapp import *
 oppened = False
 
 def createStatus(content, media=True, text="", time=""):
+    pyautogui.alert("NB : Automated Status is not available for the Whatsapp Destop App\n\tOnly Available on WhatsApp Web")
+
     session = Session()
     if time == "":
         time = (datetime.datetime.now() + datetime.timedelta(minutes=1)).strftime("%H:%M")
