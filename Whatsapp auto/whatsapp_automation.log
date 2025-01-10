@@ -1,0 +1,155 @@
+2024-12-29 20:54:21,890 - INFO - BEGIN (implicit)
+2024-12-29 20:54:21,893 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 20:54:21,895 - INFO - [generated in 0.00152s] ('Yohan_auges', 'Hello, this is a test message!', '20:55', 0)
+2024-12-29 20:54:21,899 - INFO - COMMIT
+2024-12-29 20:54:22,437 - INFO - BEGIN (implicit)
+2024-12-29 20:54:22,440 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 20:54:22,442 - INFO - [generated in 0.00222s] (15,)
+2024-12-29 20:54:22,446 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 20:54:22,449 - INFO - [generated in 0.00329s] (15, '2024-12-29 21:54:22.446393', 'Pending')
+2024-12-29 20:54:22,453 - INFO - COMMIT
+2024-12-29 20:54:22,906 - INFO - Message scheduled for Yohan_auges at 20:55
+2024-12-29 20:54:22,908 - INFO - BEGIN (implicit)
+2024-12-29 20:54:22,909 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 20:54:22,910 - INFO - [cached since 1.017s ago] ('AnotherContact', 'Test message 2', '14:30', 0)
+2024-12-29 20:54:23,062 - INFO - COMMIT
+2024-12-29 20:54:23,579 - INFO - BEGIN (implicit)
+2024-12-29 20:54:23,581 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 20:54:23,584 - INFO - [cached since 1.144s ago] (16,)
+2024-12-29 20:54:23,586 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 20:54:23,587 - INFO - [cached since 1.141s ago] (16, '2024-12-29 21:54:23.586209', 'Pending')
+2024-12-29 20:54:23,592 - INFO - COMMIT
+2024-12-29 20:54:24,115 - INFO - Message scheduled for AnotherContact at 14:30
+2024-12-29 20:54:24,117 - INFO - BEGIN (implicit)
+2024-12-29 20:54:24,119 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" JOIN "ScheduledMessages" ON "AutomatedMessages".id = "ScheduledMessages".message_id 
+WHERE "ScheduledMessages".status = ?
+2024-12-29 20:54:24,121 - INFO - [generated in 0.00195s] ('Pending',)
+2024-12-29 20:54:24,123 - INFO - Scheduling 2 messages
+2024-12-29 20:54:24,124 - INFO - Scheduler started. Press Ctrl+C to exit.
+2024-12-29 20:55:02,239 - ERROR - Error launching WhatsApp: [WinError 2] Le fichier spécifié est introuvable
+2024-12-29 20:55:40,470 - INFO - Scheduler stopped by user
+2024-12-29 20:55:40,470 - INFO - ROLLBACK
+2024-12-29 20:55:46,843 - INFO - BEGIN (implicit)
+2024-12-29 20:55:46,848 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 20:55:46,849 - INFO - [generated in 0.00107s] ('Yohan_auges', 'Hello, this is a test message!', '20:56', 0)
+2024-12-29 20:55:46,889 - INFO - COMMIT
+2024-12-29 20:55:47,415 - INFO - BEGIN (implicit)
+2024-12-29 20:55:47,419 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 20:55:47,422 - INFO - [generated in 0.00332s] (17,)
+2024-12-29 20:55:47,426 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 20:55:47,428 - INFO - [generated in 0.00226s] (17, '2024-12-29 21:55:47.426359', 'Pending')
+2024-12-29 20:55:47,435 - INFO - COMMIT
+2024-12-29 20:55:47,952 - INFO - Message scheduled for Yohan_auges at 20:56
+2024-12-29 20:55:47,953 - INFO - BEGIN (implicit)
+2024-12-29 20:55:47,953 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 20:55:47,954 - INFO - [cached since 1.106s ago] ('AnotherContact', 'Test message 2', '14:30', 0)
+2024-12-29 20:55:47,956 - INFO - COMMIT
+2024-12-29 20:55:48,814 - INFO - BEGIN (implicit)
+2024-12-29 20:55:48,815 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 20:55:48,816 - INFO - [cached since 1.397s ago] (18,)
+2024-12-29 20:55:48,818 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 20:55:48,818 - INFO - [cached since 1.392s ago] (18, '2024-12-29 21:55:48.817946', 'Pending')
+2024-12-29 20:55:48,821 - INFO - COMMIT
+2024-12-29 20:55:49,323 - INFO - Message scheduled for AnotherContact at 14:30
+2024-12-29 20:55:49,325 - INFO - BEGIN (implicit)
+2024-12-29 20:55:49,328 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" JOIN "ScheduledMessages" ON "AutomatedMessages".id = "ScheduledMessages".message_id 
+WHERE "ScheduledMessages".status = ?
+2024-12-29 20:55:49,329 - INFO - [generated in 0.00156s] ('Pending',)
+2024-12-29 20:55:49,331 - INFO - Scheduling 4 messages
+2024-12-29 20:55:49,332 - INFO - Scheduler started. Press Ctrl+C to exit.
+2024-12-29 20:56:01,468 - ERROR - Error launching WhatsApp: [WinError 2] Le fichier spécifié est introuvable
+2024-12-29 20:57:07,449 - INFO - Scheduler stopped by user
+2024-12-29 20:57:07,450 - INFO - ROLLBACK
+2024-12-29 20:57:09,990 - INFO - BEGIN (implicit)
+2024-12-29 20:57:09,996 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 20:57:09,996 - INFO - [generated in 0.00069s] ('Yohan_auges', 'Hello, this is a test message!', '20:58', 0)
+2024-12-29 20:57:09,998 - INFO - COMMIT
+2024-12-29 20:57:10,426 - INFO - BEGIN (implicit)
+2024-12-29 20:57:10,430 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 20:57:10,432 - INFO - [generated in 0.00183s] (19,)
+2024-12-29 20:57:10,435 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 20:57:10,436 - INFO - [generated in 0.00088s] (19, '2024-12-29 21:57:10.435175', 'Pending')
+2024-12-29 20:57:10,441 - INFO - COMMIT
+2024-12-29 20:57:10,989 - INFO - Message scheduled for Yohan_auges at 20:58
+2024-12-29 20:57:10,991 - INFO - BEGIN (implicit)
+2024-12-29 20:57:10,992 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 20:57:10,993 - INFO - [cached since 0.9977s ago] ('AnotherContact', 'Test message 2', '14:30', 0)
+2024-12-29 20:57:10,996 - INFO - COMMIT
+2024-12-29 20:57:11,519 - INFO - BEGIN (implicit)
+2024-12-29 20:57:11,697 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 20:57:11,699 - INFO - [cached since 1.27s ago] (20,)
+2024-12-29 20:57:11,700 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 20:57:11,701 - INFO - [cached since 1.266s ago] (20, '2024-12-29 21:57:11.700916', 'Pending')
+2024-12-29 20:57:11,880 - INFO - COMMIT
+2024-12-29 20:57:12,399 - INFO - Message scheduled for AnotherContact at 14:30
+2024-12-29 20:57:12,400 - INFO - BEGIN (implicit)
+2024-12-29 20:57:12,403 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" JOIN "ScheduledMessages" ON "AutomatedMessages".id = "ScheduledMessages".message_id 
+WHERE "ScheduledMessages".status = ?
+2024-12-29 20:57:12,405 - INFO - [generated in 0.00186s] ('Pending',)
+2024-12-29 20:57:12,406 - INFO - Scheduling 6 messages
+2024-12-29 20:57:12,407 - INFO - Scheduler started. Press Ctrl+C to exit.
+2024-12-29 20:58:02,111 - INFO - Launching WhatsApp Desktop...
+2024-12-29 20:58:47,151 - ERROR - WhatsApp failed to load within timeout period
+2024-12-29 20:59:59,516 - INFO - Scheduler stopped by user
+2024-12-29 20:59:59,517 - INFO - ROLLBACK
+2024-12-29 21:06:28,369 - INFO - BEGIN (implicit)
+2024-12-29 21:06:28,373 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 21:06:28,375 - INFO - [generated in 0.00189s] ('Yohan_auges', 'Hello, this is a test message!', '21:07', 0)
+2024-12-29 21:06:28,377 - INFO - COMMIT
+2024-12-29 21:06:28,910 - INFO - BEGIN (implicit)
+2024-12-29 21:06:28,919 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 21:06:28,923 - INFO - [generated in 0.00427s] (21,)
+2024-12-29 21:06:28,926 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 21:06:28,928 - INFO - [generated in 0.00196s] (21, '2024-12-29 22:06:28.926724', 'Pending')
+2024-12-29 21:06:28,931 - INFO - COMMIT
+2024-12-29 21:06:29,509 - INFO - Message scheduled for Yohan_auges at 21:07
+2024-12-29 21:06:29,511 - INFO - BEGIN (implicit)
+2024-12-29 21:06:29,511 - INFO - INSERT INTO "AutomatedMessages" (receiver, content, send_time, repition) VALUES (?, ?, ?, ?)
+2024-12-29 21:06:29,513 - INFO - [cached since 1.14s ago] ('AnotherContact', 'Test message 2', '14:30', 0)
+2024-12-29 21:06:29,697 - INFO - COMMIT
+2024-12-29 21:06:30,442 - INFO - BEGIN (implicit)
+2024-12-29 21:06:30,443 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" 
+WHERE "AutomatedMessages".id = ?
+2024-12-29 21:06:30,447 - INFO - [cached since 1.528s ago] (22,)
+2024-12-29 21:06:30,450 - INFO - INSERT INTO "ScheduledMessages" (message_id, scheduled_time, status) VALUES (?, ?, ?)
+2024-12-29 21:06:30,451 - INFO - [cached since 1.525s ago] (22, '2024-12-29 22:06:30.450092', 'Pending')
+2024-12-29 21:06:30,454 - INFO - COMMIT
+2024-12-29 21:06:31,219 - INFO - Message scheduled for AnotherContact at 14:30
+2024-12-29 21:06:31,220 - INFO - Scheduler started. Press Ctrl+C to exit.
+2024-12-29 21:07:31,252 - INFO - BEGIN (implicit)
+2024-12-29 21:07:31,254 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" JOIN "ScheduledMessages" ON "AutomatedMessages".id = "ScheduledMessages".message_id 
+WHERE "ScheduledMessages".status = ? AND "AutomatedMessages".send_time = ?
+2024-12-29 21:07:31,256 - INFO - [generated in 0.00212s] ('Pending', '21:07')
+2024-12-29 21:07:31,257 - INFO - Processing 1 messages for 21:07
+2024-12-29 21:07:32,893 - INFO - Launching WhatsApp Desktop...
+2024-12-29 21:08:10,412 - ERROR - WhatsApp failed to load within timeout period
+2024-12-29 21:08:10,414 - WARNING - Launch attempt too soon after previous attempt
+2024-12-29 21:08:10,415 - WARNING - Launch attempt too soon after previous attempt
+2024-12-29 21:08:10,417 - ERROR - Error processing messages: 'Message' object has no attribute 'scheduled_status'
+2024-12-29 21:08:10,418 - INFO - ROLLBACK
+2024-12-29 21:09:10,464 - INFO - BEGIN (implicit)
+2024-12-29 21:09:10,466 - INFO - SELECT "AutomatedMessages".id AS "AutomatedMessages_id", "AutomatedMessages".receiver AS "AutomatedMessages_receiver", "AutomatedMessages".content AS "AutomatedMessages_content", "AutomatedMessages".send_time AS "AutomatedMessages_send_time", "AutomatedMessages".repition AS "AutomatedMessages_repition" 
+FROM "AutomatedMessages" JOIN "ScheduledMessages" ON "AutomatedMessages".id = "ScheduledMessages".message_id 
+WHERE "ScheduledMessages".status = ? AND "AutomatedMessages".send_time = ?
+2024-12-29 21:09:10,473 - INFO - [cached since 99.22s ago] ('Pending', '21:09')
+2024-12-29 21:09:10,477 - INFO - ROLLBACK
+2024-12-29 21:09:12,656 - INFO - Scheduler stopped by user

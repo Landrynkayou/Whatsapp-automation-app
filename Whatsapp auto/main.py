@@ -81,6 +81,7 @@ def sendMessages(contact, msg):
         pyautogui.alert("The Automation process could not continue\nAn Error was encountered ")
         print("Couldn't send the message",e)
 
+
 def scheduleMessages():
     session = Session()  # Create a session
     now = datetime.datetime.utcnow()
@@ -116,7 +117,7 @@ def scheduleMessages():
 
 if __name__ == "__main__" :
     # sendMessages()
-    createMessage("Rebec","Hello")
+    createMessage("Yohan_auges","Hello")
     createMessage("Megane","Gracias")
     createMessage("Python","Testing connection with database\n","05:48")
     sleep(3)
