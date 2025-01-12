@@ -29,57 +29,51 @@ def createMessage(contact, msg, time=""):
     session.commit()
 
     print("Message and scheduled message added successfully!")
-
+def open_whatsapp_desktop():
+    # Use the Start menu search to open WhatsApp Desktop
+    pyautogui.hotkey('win', 's')  # Open the Windows search menu
+    sleep(1)
+    pyautogui.write('WhatsApp', interval=0.1)  # Type WhatsApp
+    sleep(1)
+    pyautogui.press('enter')  # Open WhatsApp Desktop
+    sleep(5)  # Allow time for the app to open
 
 def sendMessages(contact, msg):
     global many, alreadyEntered
     print(f"[{datetime.datetime.now()}] Sending message to {contact}...")
     try:
         sleep(2)
-        if (plural and many==False) or plural==False:
-            print("Plural : ",plural)
-            print("many : ",many)
+        if (plural and many == False) or plural == False:
+            print("Plural : ", plural)
+            print("many : ", many)
             sleep(2)
-            pyautogui.click(x=265, y=16) 
-            sleep(2)
-            pyautogui.hotkey("win", "right")
-            sleep(0.5)
-            # pyautogui.click(x=450, y=100) 
-            pyautogui.click(x=1200, y=95) 
-            pyautogui.write('https://web.whatsapp.com/\n', interval=0.08) 
-            # sleep(7)
-            sleep(4)
-            print("Before Loop")
-            # while pyautogui.locateCenterOnScreen('loading_chat.png') :
-            #     print("Inside Loop 1")
-            #     break
 
-            while pyautogui.locateOnScreen('loading_bar1.png') or pyautogui.locateOnScreen('loading_bar2.png') :
-            # while pyautogui.locateCenterOnScreen('loading_bar1.png') or pyautogui.locateCenterOnScreen('loading_bar2.png') :
-                print("Inside Loop 2")
+            # Open WhatsApp Desktop
+            print("Opening WhatsApp Desktop...")
+            open_whatsapp_desktop()
+
+            # Wait for WhatsApp to load
+            while pyautogui.locateOnScreen('loading_chat.png'):
+                print("Waiting for WhatsApp to load...")
                 sleep(2)
-                break
-        
-            sleep(3)
-            print("Outside Loop")
 
+            print("WhatsApp Desktop is ready!")
             sleep(2)
-        
-            pyautogui.click(pyautogui.locateOnScreen('search_icon.png'))
-            many=True
+            many = True
+
         elif alreadyEntered > 0:
             pyautogui.click()
         else:
-            alreadyEntered=alreadyEntered+1
-            pyautogui.click(pyautogui.locateOnScreen('reset_seachBar.png'))
+            alreadyEntered = alreadyEntered + 1
+            pyautogui.click(pyautogui.locateOnScreen('reset_searchBar.png'))
 
-        pyautogui.write(contact, interval=0.05) 
+        pyautogui.write(contact, interval=0.05)
         pyautogui.press('enter')
         pyautogui.write(msg, interval=0.2)
         print(f"[{datetime.datetime.now()}] Message sent!")
     except Exception as e:
-        pyautogui.alert("The Automation process could not continue\nAn Error was encountered ")
-        print("Couldn't send the message",e)
+        pyautogui.alert("The Automation process could not continue\nAn Error was encountered")
+        print("Couldn't send the message", e)
 
 
 def scheduleMessages():

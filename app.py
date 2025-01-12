@@ -30,12 +30,12 @@ if __name__ == "__main__" :
     # lok=False
     # OppenClosedZapp(lok)
     OppenWhatsapp() 
-    # verifyOppenZapp()
     # sendMessages("prince","loki")
     # createStatus("/home/hitechangel/Pictures/chat2.png", True, "My App")
     
     # scheduleStatus()
-    
+     # verifyOppenZapp()
+   
     # createMessage("Python","Testing connection with database","00:36")
     # sleep(3)
     # scheduleMessages()

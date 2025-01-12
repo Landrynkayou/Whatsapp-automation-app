@@ -21,7 +21,7 @@ def verifyOppenZapp() :
                         raise
     print("WhatsApp is openned")
 
-def OppenWhatsapp(web=True) :
+def OppenWhatsapp(web=False) :
     if web:
         try:
             pyautogui.click(pyautogui.locateCenterOnScreen('controller/image/firefox.png', confidence=0.7))

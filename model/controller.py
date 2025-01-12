@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import update, delete
-from db import Message, StatusLog, ScheduledMessage  # Assuming your models are saved in a file named models.py
+from db import Message,  ScheduledMessage  # Assuming your models are saved in a file named models.py
 import datetime
 
 class DatabaseController:

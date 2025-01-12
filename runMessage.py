@@ -6,7 +6,7 @@ if __name__ == "__main__" :
     lock = Lock()
 
     # createMessage("Rebec","Hello")
-    createMessage("Artino","Am Good","07:53")
+    createMessage("Yohan", "Yo")
 
 
     scheduleMessages(lock)
